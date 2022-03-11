@@ -9,23 +9,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./assets/js/domMethods.js":
-/*!*********************************!*\
-  !*** ./assets/js/domMethods.js ***!
-  \*********************************/
-/***/ ((module) => {
-
-eval("const createEl = function (htmlString, attrs, ...children) {\n\tif (typeof htmlString !== \"string\") {\n\t\tthrow Error(\"Argument 'htmlString' is required and must be a string\");\n\t}\n\n\tconst el = document.createElement(htmlString);\n\n\tif (typeof attrs === \"object\") {\n\t\tfor (let key in attrs) {\n\t\t\tif (key.substring(0, 2) === \"on\") {\n\t\t\t\tel.addEventListener(key.substring(2).toLowerCase(), attrs[key]);\n\t\t\t} else {\n\t\t\t\tel.setAttribute(key, attrs[key]);\n\t\t\t}\n\t\t}\n\t}\n\n\tchildren.forEach(function (child) {\n\t\tlet node;\n\n\t\tif (child.constructor.name.includes(\"Element\")) {\n\t\t\tnode = child;\n\t\t} else {\n\t\t\tnode = document.createTextNode(child);\n\t\t}\n\n\t\tel.appendChild(node);\n\t});\n\n\treturn el;\n};\n\nmodule.exports = createEl;\n\n\n//# sourceURL=webpack://food-festival/./assets/js/domMethods.js?");
-
-/***/ }),
-
 /***/ "./assets/js/tickets.js":
 /*!******************************!*\
   !*** ./assets/js/tickets.js ***!
   \******************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n__webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\nconst createEl = __webpack_require__(/*! ./domMethods */ \"./assets/js/domMethods.js\");\n\n$(document).ready(function () {\n\tif (window.location.href.indexOf(\"schedule\") > -1) {\n\t\tconst purchaseBtn = document.getElementById(\"purchaseBtn\");\n\t\tconst purchaseEmail = document.getElementById(\"purchaseEmail\");\n\t\tconst modalEl = document.querySelector(\".modal-content\");\n\t\tconst modalBodyEl = document.querySelector(\".modal-body\");\n\t\tconst modalFooterEl = document.querySelector(\".modal-footer\");\n\n\t\tfunction purchaseTicket() {\n\t\t\tmodalEl.removeChild(modalBodyEl);\n\t\t\tmodalEl.removeChild(modalFooterEl);\n\n\t\t\tmodalEl.append(\n\t\t\t\tcreateEl(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ class: \"modal-body\" },\n\t\t\t\t\tcreateEl(\n\t\t\t\t\t\t\"h5\",\n\t\t\t\t\t\t{ class: \"modal-title\" },\n\t\t\t\t\t\t`Thanks for requesting a ticket purchase! We will send an email to ${purchaseEmail.value} to complete the order form!`\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t\tpurchaseBtn.addEventListener(\"click\", purchaseTicket);\n\t}\n});\n\n\n//# sourceURL=webpack://food-festival/./assets/js/tickets.js?");
+eval("__webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n\nif (window.location.href.indexOf(\"tickets\") > -1) {\n\n  const purchaseBtn = document.getElementById(\"purchaseBtn\");\n  const purchaseEmail = document.getElementById(\"purchaseEmail\");\n  const modalEl = document.querySelector(\".modal-content\");\n  const modalBodyEl = document.querySelector(\".modal-body\");\n  const modalFooterEl = document.querySelector(\".modal-footer\");\n\n\n  function purchaseTicket () {\n\n    modalEl.removeChild(modalBodyEl)\n    modalEl.removeChild(modalFooterEl)\n\n    modalEl.append(createEl(\"div\", {class: \"modal-body\"},\n      createEl(\"h5\", {class: \"modal-title\"}, \n      `Thanks for requesting a ticket purchase! We will send an email to ${purchaseEmail.value} to complete the order form!`\n      ),\n    ))\n    \n  }\n  purchaseBtn.addEventListener(\"click\", purchaseTicket);\n}\n\n//# sourceURL=webpack://food-festival/./assets/js/tickets.js?");
 
 /***/ }),
 
